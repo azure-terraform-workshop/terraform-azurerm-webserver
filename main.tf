@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "module" {
 
   tags {
     environment = "dev"
-    version     = "v0.0.1"
+    version     = "v0.0.2"
   }
 }
 
