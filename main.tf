@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "module" {
 
   tags = {
     environment = "dev"
-    version     = "v0.0.2"
+    version     = "v0.12.0"
   }
 }
 
@@ -29,7 +29,7 @@ resource "azurerm_virtual_machine" "module" {
   name                             = "${local.module_name}-vm${count.index}"
   location                         = azurerm_resource_group.module.location
   resource_group_name              = azurerm_resource_group.module.name
-  network_interface_ids            = [element(azurerm_network_interface.module.*.id, count.index)]
+  network_interface_ids            = [azurerm_network_interface.module[count.index].id]
   count                            = var.vm_count
   vm_size                          = var.size
   delete_os_disk_on_termination    = var.delete_os_disk_on_termination
